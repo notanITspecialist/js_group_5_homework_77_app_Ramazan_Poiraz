@@ -14,7 +14,7 @@ function App() {
   const [forumMessage, setForumMessage] = useState([]);
 
   const init = async () => {
-    const data = await axios.get('http://localhost:8002/message');
+    const data = await axios.get('http://localhost:8000/message');
     setForumMessage(data.data);
   };
 
@@ -37,7 +37,7 @@ function App() {
     Object.keys(formMessage).forEach(el => {
       formData.append(el, formMessage[el]);
     });
-    await axios.post('http://localhost:8002/message', formData);
+    await axios.post('http://localhost:8000/message', formData);
     init();
     setFormMessage({...formMessage, formMessageInit});
   };
@@ -46,7 +46,7 @@ function App() {
       <ListGroupItem key={el.id}>
         <h4>{el.author}</h4>
         <p>{el.description}</p>
-        {el.image !== '' && <img alt={el.image} src={"http://localhost:8002/uploads/" + el.image} className='rounded mx-auto d-block' style={{width: '100%', maxWidth: '400px'}} />}
+        {el.image !== '' && <img alt={el.image} src={"http://localhost:8000/uploads/" + el.image} className='rounded mx-auto d-block' style={{width: '100%', maxWidth: '400px'}} />}
       </ListGroupItem>
   ))
 
